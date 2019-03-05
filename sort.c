@@ -1,5 +1,6 @@
 #include <assert.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "sort.h"
@@ -10,31 +11,31 @@
 */
 int* mergeSort(int* ptr, int len) {
     if (len==1 || len==0) return ptr;
-    int frontLen = len/2, backLen = len/2; // even case
+    int fL = len/2, bL = len/2; // even case
     if (len%2 != 0) { // not even, have to handle odd case
-        frontLen = len/2 + 1;
-        backLen = len/2;
+        fL = len/2 + 1;
+        bL = len/2;
     }
-    int* front = malloc(sizeof(int)*frontLen);
-    int* back = malloc(sizeof(int)*backLen);
+    int* front = calloc(fL, sizeof(int));
+    int* back = calloc(bL, sizeof(int));
     int i;
-    for (i=0; i<frontLen;i++) {
+    for (i=0; i<fL;i++) {
         front[i] = ptr[i];
     }
     int j=0;
-    for (i=frontLen; i<len; i++) {
+    for (i=fL; i<len; i++) {
         back[j] = ptr[i];
         j++;
     }
     free(ptr);
-    return merge(mergeSort(front, frontLen), mergeSort(back, backLen), frontLen, backLen);
+    return merge(mergeSort(front, fL), mergeSort(back, bL), fL, bL);
 }
 /*
     merge the pieces together by iterating
 */
 int* merge(int* ptr0, int* ptr1, int ptr0L, int ptr1L){
     int size = ptr0L + ptr1L;
-    int* new = malloc(sizeof(int)*size);
+    int* new = calloc(size, sizeof(int));
     int i = 0, j = 0, k = 0;
     for (i=0; i<size; i++) {
         if (j >= ptr0L) {
