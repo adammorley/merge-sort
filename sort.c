@@ -17,7 +17,8 @@ int* mergeSort(int* ptr, int len) {
     }
     int* front = malloc(sizeof(int)*frontLen);
     int* back = malloc(sizeof(int)*backLen);
-    for (int i=0; i<frontLen;i++) {
+    int i;
+    for (i=0; i<frontLen;i++) {
         front[i] = ptr[i];
     }
     int j=0;
@@ -34,21 +35,21 @@ int* mergeSort(int* ptr, int len) {
 int* merge(int* ptr0, int* ptr1, int ptr0L, int ptr1L){
     int size = ptr0L + ptr1L;
     int* new = malloc(sizeof(int)*size);
-    int i = 0, 0i = 0, 1i = 0;
+    int i = 0, j = 0, k = 0;
     for (i=0; i<size; i++) {
-        if (0i >= ptr0L) {
-            new[i] = ptr1[1i];
-            1i++;
-        } else if (1i >= ptr1L) {
-            new[i] = ptr0[0i];
-            0i++;
-        } else if (ptr0[0i] < ptr1[1i]) {
-            new[i] = ptr0[0i];
-            0i++;
-        } else if (ptr0[0i] >= ptr1[1i]) {
-            new[i] = ptr1[1i];
-            1i++;
-        } else assert(true);
+        if (j >= ptr0L) {
+            new[i] = ptr1[k];
+            k++;
+        } else if (k >= ptr1L) {
+            new[i] = ptr0[j];
+            j++;
+        } else if (ptr0[j] < ptr1[k]) {
+            new[i] = ptr0[j];
+            j++;
+        } else if (ptr0[j] >= ptr1[k]) {
+            new[i] = ptr1[k];
+            k++;
+        } else assert(false);
     }
     free(ptr0);
     free(ptr1);
