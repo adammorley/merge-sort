@@ -1,10 +1,10 @@
 #include <assert.h>
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 #include "sort.h"
 
+int* merge(int* ptr0, int* ptr1, int ptr0L, int ptr1L);
 /*
     take a pointer to range of memory with integers, and the length of the location
     perform a merge sort
